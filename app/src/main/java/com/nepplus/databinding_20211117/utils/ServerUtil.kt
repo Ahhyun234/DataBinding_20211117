@@ -1,8 +1,9 @@
 package com.nepplus.databinding_20211117.utils
 
 import android.util.Log
-import okhttp3.FormBody
-import okhttp3.Request
+import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
 
 class ServerUtil {
 
@@ -30,9 +31,37 @@ class ServerUtil {
 //              어디로 어떤 방식으로 갈것인지
             
             val request = Request.Builder()
-                .url(HOST_URL)
+                .url(urlString)
                 .post(formData)
                 .build()
+
+//            4. 완성된 Requst를 실제로 호출 => 클라이언트 역할
+
+            val client = OkHttpClient()
+            client.newCall(request).enqueue( object :Callback{
+                override fun onFailure(call: Call, e: IOException) {
+
+//                    실패: 물리적으로 (연결 자체)접속 실패 -> 보통 토스트 띄움
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+//                    결과가 무엇이든 응답이 돌아온 상황
+
+//                    응답의 본문에 어떤 내용? -> 본문만 스트링으로 변환
+                    val bodyString = response.body!!.string()
+
+//                    bodyString은 Json양식으로 가공됨-> 한글도 임시 변환 된 상태 (encoding)
+//                    일반 String -> JsonObject로 변환 (한글도 원상복구)
+                    val jsonObj = JSONObject(bodyString)
+
+                    Log.d("서버응답",jsonObj.toString())
+
+
+                }
+
+            })
+
+
             
             
             
