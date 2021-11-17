@@ -3,6 +3,7 @@ package com.nepplus.databinding_20211117
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.nepplus.databinding_20211117.databinding.ActivityMainBinding
 import com.nepplus.databinding_20211117.utils.ServerUtil
@@ -32,6 +33,21 @@ class MainActivity : BaseActivity() {
 
 //                        이 response가 main입장에서는 로그인 API를 호출하고 JsonObj를 받아서 돌아온 상황이기 때문에
                         Log.d("화면에서의 obj",jsonObject.toString())
+
+                        val code = jsonObject.getInt("code")
+
+//                       code:200 -> 로그인 성공 토스트
+
+                        runOnUiThread{
+                            if (code==200){
+                                Toast.makeText(mContext, "로그인 성공", Toast.LENGTH_SHORT).show()
+                            }
+                            else{
+                                Toast.makeText(mContext, "로그인 실패", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+//                        Log.d("로그인 코드값",code.toString())
                     }
 
                 })
