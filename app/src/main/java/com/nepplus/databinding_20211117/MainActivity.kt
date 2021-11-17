@@ -35,6 +35,7 @@ class MainActivity : BaseActivity() {
                         Log.d("화면에서의 obj",jsonObject.toString())
 
                         val code = jsonObject.getInt("code")
+                        val reason = jsonObject.getString("message")
 
 //                       code:200 -> 로그인 성공 토스트
 
@@ -43,10 +44,12 @@ class MainActivity : BaseActivity() {
                                 Toast.makeText(mContext, "로그인 성공", Toast.LENGTH_SHORT).show()
                             }
                             else{
-                                Toast.makeText(mContext, "로그인 실패", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(mContext, reason.toString(), Toast.LENGTH_SHORT).show()
                             }
                         }
 
+//                        message String으로 실패 사유를 알려준다.
+//                        파싱으로 추출해서 로그인 실패 대신 사유를 띄우자
 //                        Log.d("로그인 코드값",code.toString())
                     }
 
