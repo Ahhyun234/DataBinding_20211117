@@ -18,7 +18,7 @@ class LogInActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_logIn)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         setupEvent()
         setValues()
@@ -62,6 +62,9 @@ class LogInActivity : BaseActivity() {
                                 val token = jsonObject.getString("token")
 //                                **따낸 토큰을 Shared preference라는 공간에 토큰 저장
                                 ContextUtil.setToken(mContext,token)
+
+//                                //아이디로 입력한 이메일 -> Sharepreference에 저장
+                                ContextUtil.setLoginEmail(mContext,inputEmail)
 
 
 //                              ////////////////////////////메인으로 이동

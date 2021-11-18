@@ -7,6 +7,14 @@ class ContextUtil {
     companion object {
         private val prefName = "ColosseumPref"
         private val TOKEN = "TOKEN"
+        private val LOGIN_EMAIL = "LOGIN_EMAIL"
+
+        fun setLoginEmail(context: Context,email:String){
+            val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+
+            pref.edit().putString(LOGIN_EMAIL,email).apply()
+
+        }
 
 //        token값에 대한 setter
 
