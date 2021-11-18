@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
+import com.google.android.material.internal.ContextUtils
 import com.nepplus.databinding_20211117.databinding.ActivityLogInBinding
 import com.nepplus.databinding_20211117.utils.ServerUtil
 import org.json.JSONObject
@@ -62,6 +63,7 @@ class LogInActivity : BaseActivity() {
 
                                 val token = jsonObject.getString("token")
 //                                **따낸 토큰을 Shared preference라는 공간에 토큰 저장
+                                ContextUtils.setToken(mContext,token)
 
 
 //                              ////////////////////////////메인으로 이동
