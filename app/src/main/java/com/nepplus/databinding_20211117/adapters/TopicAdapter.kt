@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.nepplus.databinding_20211117.R
 import com.nepplus.databinding_20211117.datas.TopicData
 
@@ -28,7 +29,7 @@ class TopicAdapter(val mContext: Context, val resId: Int, val mList: List<TopicD
         val txtTopic = row.findViewById<TextView>(R.id.txtTopicTitle)
 
         txtTopic.text = data.title
-
+        Glide.with(mContext).load(data.imageUrl).into(imgTopic)
         return row
 
     }
