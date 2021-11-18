@@ -24,6 +24,14 @@ class SignUp : BaseActivity() {
 
     override fun setupEvent() {
 
+        binding.btnIdCheck.setOnClickListener {
+
+            val inputEmail = binding.edtEmail.text.toString()
+
+//            서버에 중복 확인
+
+        }
+
         binding.btnOk.setOnClickListener {
 //            입력한 이메일 비밀번호 닉네임 변수로 담아두자
             val inputEmail = binding.edtEmail.text.toString()
