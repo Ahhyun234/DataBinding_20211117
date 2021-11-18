@@ -123,7 +123,6 @@ class ServerUtil {
             Log.d("완성주소", urlString)
 
 
-
 //            3. 어떤 메소드 + 정보 종합생성
             val request = Request.Builder().url(urlString).get().build()
 
@@ -148,10 +147,10 @@ class ServerUtil {
 
         }
 
-//        연습용/////////////내 정보 가져오기 토큰 첨부(Get방식)
+        //        연습용/////////////내 정보 가져오기 토큰 첨부(Get방식)
         fun getRequestMyInfo(context: Context, handler: JsonResponseHandler?) {
 
-      val urlBuilder = "${HOST_URL}/user_info".toHttpUrlOrNull()!!.newBuilder()
+            val urlBuilder = "${HOST_URL}/user_info".toHttpUrlOrNull()!!.newBuilder()
 //            urlBuilder.addEncodedQueryParameter("type", type)
 //            urlBuilder.addEncodedQueryParameter("value", value)
 
@@ -159,7 +158,8 @@ class ServerUtil {
             Log.d("완성주소", urlString)
 
             //Request를 만들 때 header도 같이 첨부하는 형식
-            val request = Request.Builder().url(urlString).get().header("X-Http-Token",ContextUtil.getToken(context)).build()
+            val request = Request.Builder().url(urlString).get()
+                .header("X-Http-Token", ContextUtil.getToken(context)).build()
 
 //            API 호출 client
 
@@ -182,6 +182,41 @@ class ServerUtil {
 
         }
 
+//        //메인화면의 데이터 가져오기 (토론 주제 목록 가져오기)
+
+        fun getMainInfo(context: Context, handler: JsonResponseHandler?) {
+
+            val urlBuilder = "${HOST_URL}/v2/main_Info".toHttpUrlOrNull()!!.newBuilder()
+//            urlBuilder.addEncodedQueryParameter("type", type)
+//            urlBuilder.addEncodedQueryParameter("value", value)
+
+            val urlString = urlBuilder.toString()
+            Log.d("완성주소", urlString)
+
+            //Request를 만들 때 header도 같이 첨부하는 형식
+            val request = Request.Builder().url(urlString).get()
+                .header("X-Http-Token", ContextUtil.getToken(context)).build()
+
+//            API 호출 client
+
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string()
+                    val jsonobj = JSONObject(bodyString)
+                    Log.d("서버응답", jsonobj.toString())
+                    handler?.onResponse(jsonobj)
+
+                }
+
+            })
+
+        }
 
     }
 }
