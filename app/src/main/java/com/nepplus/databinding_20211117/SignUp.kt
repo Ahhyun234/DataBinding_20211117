@@ -15,7 +15,7 @@ class SignUp : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= DataBindingUtil.setContentView(this,R.layout.activity_sign_up)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
 
         setValues()
         setupEvent()
@@ -33,25 +33,40 @@ class SignUp : BaseActivity() {
 
 //            서버의 회원가입 기능에 전달(request)/ 돌아온 응답 대응(response)
 
-            ServerUtil.putRequestSignUp(inputEmail,inputPw,inputNickname,object :ServerUtil.JsonResponseHandler{
-                override fun onResponse(jsonObj: JSONObject) {
-                    
-                    val code = jsonObj.getInt("code")
-                    val message = jsonObj.getString("message")
-                    if (code==200){
-                        Toast.makeText(mContext, "회원가입에 성공했습니다.", Toast.LENGTH_SHORT).show()
-                    }
-                    else{
-                        runOnUiThread{
-                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
-                        }
+            ServerUtil.putRequestSignUp(
+                inputEmail,
+                inputPw,
+                inputNickname,
+                object : ServerUtil.JsonResponseHandler {
+                    override fun onResponse(jsonObj: JSONObject) {
+
+                        val code = jsonObj.getInt("code")
+                        val message = jsonObj.getString("message")
+                        val dataObj = jsonObj.getJSONObject("data")
+                        val userObj = dataObj.getJSONObject("user")
+                        val nick_name = userObj.getString("nick_name")
+
+                        if (code == 200) {
+//                        가입한 사람의 닉네임을 추출해서 메세지 띄우기 + 회원가입 화면 종류
+                            runOnUiThread {
+                                Toast.makeText(
+                                    mContext,
+                                    "${nick_name}님 회원가입 축하합니다.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            finish()
+                            }
+                        } else {
+                            runOnUiThread {
+                                Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                            }
 //                        실패-> 서버가 알려주는 실패 사유를 알려주자 
+                        }
+
+
                     }
-                        
 
-                }
-
-            })
+                })
 
         }
 
