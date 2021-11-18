@@ -90,7 +90,7 @@ class ServerUtil {
             val request = Request.Builder().url(urlSting).put(formData).build()
 
             val client = OkHttpClient()
-            client.newCall(request).enqueue(object :Callback{
+            client.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
 
                 }
@@ -99,7 +99,7 @@ class ServerUtil {
 
                     val bodyString = response.body!!.string()
                     val jsonObj = JSONObject(bodyString)
-                    Log.d("서버 응답",jsonObj.toString())
+                    Log.d("서버 응답", jsonObj.toString())
                     handler?.onResponse(jsonObj)
                 }
 
@@ -107,28 +107,44 @@ class ServerUtil {
         }
 
 
-//        /////////////////GET 방식 (중복확인)///////////////////////////////
-        fun getRequestDupCheck(type:String, value:String,handler: JsonResponseHandler?){
+        //        /////////////////GET 방식 (중복확인)///////////////////////////////
+        fun getRequestDupCheck(type: String, value: String, handler: JsonResponseHandler?) {
 
 //            1. 어디로 갈 것인지 +  2. 어떤 파라미터 => GET 방식은 이것을 같이 씀
 //            url을 만드는 과정이 복잡하기 때문에 한단계씩 샇아나가는 방식으로 url작성
             val urlBuilder = "${HOST_URL}/user_check".toHttpUrlOrNull()!!.newBuilder()
-                urlBuilder.addEncodedQueryParameter("type",type)
-                urlBuilder.addEncodedQueryParameter("value",value)
+            urlBuilder.addEncodedQueryParameter("type", type)
+            urlBuilder.addEncodedQueryParameter("value", value)
 
 //              최종 완성된 주소 string으로 저장
-                val urlString = urlBuilder.toString()
-                Log.d("완성주소",urlString)
+            val urlString = urlBuilder.toString()
+            Log.d("완성주소", urlString)
 
-                ServerUtil.getRequestDupCheck("EMAIL", inputEmail, null)
-
+            ServerUtil.getRequestDupCheck("EMAIL", binding.inputEmail, null)
 
 //            3. 어떤 메소드 + 정보 종합생성
+            val request = Request.Builder().url(urlString).get().build()
 
 //            API 호출 client
 
-        }
+            val client = OkHttpClient()
 
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string()
+                    val jsonobj = JSONObject(bodyString)
+                    Log.d("서버응답", jsonobj.toString())
+                    handler?.onResponse(jsonobj)
+
+                }
+
+            })
+
+        }
 
 
     }
