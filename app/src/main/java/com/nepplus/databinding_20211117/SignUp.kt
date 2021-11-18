@@ -30,6 +30,25 @@ class SignUp : BaseActivity() {
 
 //            서버에 중복 확인
 
+            ServerUtil.getRequestDupCheck("EMAIL",inputEmail, object:ServerUtil.JsonResponseHandler{
+                override fun onResponse(jsonObject: JSONObject) {
+
+                    val code = jsonObject.getInt("code")
+                    runOnUiThread{
+
+                        if (code==200 ){
+                            binding.txtEmailDupCheck.text="사용해도 좋습니다."
+
+                        }
+                        else{
+                            binding.txtEmailDupCheck.text= "중복된 이메일입니다."
+                        }
+
+                    }
+                }
+
+            } )
+
         }
 
         binding.btnOk.setOnClickListener {

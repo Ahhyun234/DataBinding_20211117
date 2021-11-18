@@ -2,6 +2,7 @@ package com.nepplus.databinding_20211117.utils
 
 import android.provider.ContactsContract
 import android.util.Log
+import kotlinx.coroutines.flow.combine
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.json.JSONObject
@@ -120,7 +121,7 @@ class ServerUtil {
             val urlString = urlBuilder.toString()
             Log.d("완성주소", urlString)
 
-            ServerUtil.getRequestDupCheck("EMAIL", binding.inputEmail, null)
+
 
 //            3. 어떤 메소드 + 정보 종합생성
             val request = Request.Builder().url(urlString).get().build()
