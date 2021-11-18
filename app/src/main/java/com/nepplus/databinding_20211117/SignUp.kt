@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.nepplus.databinding_20211117.databinding.ActivityMainBinding
 import com.nepplus.databinding_20211117.databinding.ActivitySignUpBinding
 import com.nepplus.databinding_20211117.utils.ServerUtil
 import org.json.JSONObject

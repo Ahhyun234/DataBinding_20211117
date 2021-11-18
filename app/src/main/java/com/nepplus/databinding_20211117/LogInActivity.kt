@@ -7,17 +7,18 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.internal.ContextUtils
-import com.nepplus.databinding_20211117.databinding.ActivityLogInBinding
+import com.nepplus.databinding_20211117.databinding.ActivityLoginBinding
+import com.nepplus.databinding_20211117.utils.ContextUtil
 import com.nepplus.databinding_20211117.utils.ServerUtil
 import org.json.JSONObject
 
 class LogInActivity : BaseActivity() {
 
-    lateinit var binding: ActivityLogInBinding
+    lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_LogIn)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         setupEvent()
         setValues()
@@ -63,7 +64,7 @@ class LogInActivity : BaseActivity() {
 
                                 val token = jsonObject.getString("token")
 //                                **따낸 토큰을 Shared preference라는 공간에 토큰 저장
-                                ContextUtils.setToken(mContext,token)
+                                ContextUtil.setToken(mContext,token)
 
 
 //                              ////////////////////////////메인으로 이동

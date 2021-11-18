@@ -1,6 +1,8 @@
 package com.nepplus.databinding_20211117.utils
 
-class Context {
+import android.content.Context
+
+class ContextUtil {
 
     companion object {
         private val prefName = "ColosseumPref"
