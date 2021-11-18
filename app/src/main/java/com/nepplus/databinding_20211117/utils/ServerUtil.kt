@@ -3,6 +3,7 @@ package com.nepplus.databinding_20211117.utils
 import android.provider.ContactsContract
 import android.util.Log
 import okhttp3.*
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.json.JSONObject
 import java.io.IOException
 
@@ -104,6 +105,30 @@ class ServerUtil {
 
             })
         }
+
+
+//        /////////////////GET 방식 (중복확인)///////////////////////////////
+        fun getRequestDupCheck(type:String, value:String,handler: JsonResponseHandler?){
+
+//            1. 어디로 갈 것인지 +  2. 어떤 파라미터 => GET 방식은 이것을 같이 씀
+//            url을 만드는 과정이 복잡하기 때문에 한단계씩 샇아나가는 방식으로 url작성
+            val urlBuilder = "${HOST_URL}/user_check".toHttpUrlOrNull()!!.newBuilder()
+                urlBuilder.addEncodedQueryParameter("type",type)
+                urlBuilder.addEncodedQueryParameter("value",value)
+
+//              최종 완성된 주소 string으로 저장
+                val urlString = urlBuilder.toString()
+                Log.d("완성주소",urlString)
+
+                ServerUtil.getRequestDupCheck("EMAIL", inputEmail, null)
+
+
+//            3. 어떤 메소드 + 정보 종합생성
+
+//            API 호출 client
+
+        }
+
 
 
     }
