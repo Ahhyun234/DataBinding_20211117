@@ -12,7 +12,7 @@ import com.nepplus.databinding_20211117.utils.ContextUtil
 import com.nepplus.databinding_20211117.utils.ServerUtil
 import org.json.JSONObject
 
-class LogInActivity : BaseActivity() {
+class LoginActivity : BaseActivity() {
 
     lateinit var binding: ActivityLoginBinding
 
@@ -90,6 +90,8 @@ class LogInActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+    binding.edtID.setText(ContextUtil.getLoginEmail(mContext))
 
     }
 

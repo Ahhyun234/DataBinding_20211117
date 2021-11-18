@@ -13,7 +13,11 @@ class ContextUtil {
             val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
 
             pref.edit().putString(LOGIN_EMAIL,email).apply()
+        }
 
+        fun getLoginEmail(context: Context):String{
+            val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+            return pref.getString(LOGIN_EMAIL," ")!!
         }
 
 //        token값에 대한 setter
