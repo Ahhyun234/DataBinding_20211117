@@ -48,7 +48,13 @@ class MainActivity : BaseActivity() {
 
                         runOnUiThread{
                             if (code==200){
-                                Toast.makeText(mContext, "로그인 성공", Toast.LENGTH_SHORT).show()
+//                                로그인 성공 페이지 로그인 성공 시 그 사람의 닉네임 추출해서 표출
+
+                                val dataObj = jsonObject.getJSONObject("data")
+                                val userObj = dataObj.getJSONObject("user")
+                                val nick_name = userObj.getString("nick_name")
+
+                                Toast.makeText(mContext, "${nick_name}님 환영합니다.", Toast.LENGTH_SHORT).show()
                             }
                             else{
                                 Toast.makeText(mContext, reason.toString(), Toast.LENGTH_SHORT).show()

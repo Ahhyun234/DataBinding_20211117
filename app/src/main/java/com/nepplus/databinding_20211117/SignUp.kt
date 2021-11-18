@@ -42,11 +42,12 @@ class SignUp : BaseActivity() {
 
                         val code = jsonObj.getInt("code")
                         val message = jsonObj.getString("message")
-                        val dataObj = jsonObj.getJSONObject("data")
-                        val userObj = dataObj.getJSONObject("user")
-                        val nick_name = userObj.getString("nick_name")
+
 
                         if (code == 200) {
+                            val dataObj = jsonObj.getJSONObject("data")
+                            val userObj = dataObj.getJSONObject("user")
+                            val nick_name = userObj.getString("nick_name")
 //                        가입한 사람의 닉네임을 추출해서 메세지 띄우기 + 회원가입 화면 종류
                             runOnUiThread {
                                 Toast.makeText(
