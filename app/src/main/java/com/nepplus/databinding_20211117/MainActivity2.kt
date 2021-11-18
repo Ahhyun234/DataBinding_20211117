@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.nepplus.databinding_20211117.databinding.ActivityMain2Binding
+import com.nepplus.databinding_20211117.utils.ServerUtil
+import org.json.JSONObject
 
 class MainActivity2 : BaseActivity() {
 
@@ -12,7 +14,7 @@ class MainActivity2 : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= DataBindingUtil.setContentView(this,R.layout.activity_main2)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main2)
 
         setupEvent()
         setValues()
@@ -24,5 +26,17 @@ class MainActivity2 : BaseActivity() {
 
     override fun setValues() {
 
+//        연습 -> 내정보 API호출 -> 닉네임 추출/ui반영
+        getMyInfoFromServer()
+    }
+
+    fun getMyInfoFromServer() {
+
+        ServerUtil.getRequestMyInfo(mContext, object : ServerUtil.JsonResponseHandler {
+            override fun onResponse(jsonObject: JSONObject) {
+
+
+            }
+        })
     }
 }

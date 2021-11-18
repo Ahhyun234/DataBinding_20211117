@@ -1,5 +1,6 @@
 package com.nepplus.databinding_20211117.utils
 
+import android.content.Context
 import android.provider.ContactsContract
 import android.util.Log
 import kotlinx.coroutines.flow.combine
@@ -125,6 +126,40 @@ class ServerUtil {
 
 //            3. 어떤 메소드 + 정보 종합생성
             val request = Request.Builder().url(urlString).get().build()
+
+//            API 호출 client
+
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string()
+                    val jsonobj = JSONObject(bodyString)
+                    Log.d("서버응답", jsonobj.toString())
+                    handler?.onResponse(jsonobj)
+
+                }
+
+            })
+
+        }
+
+//        연습용/////////////내 정보 가져오기 토큰 첨부(Get방식)
+        fun getRequestMyInfo(context: Context, handler: JsonResponseHandler?) {
+
+      val urlBuilder = "${HOST_URL}/user_info".toHttpUrlOrNull()!!.newBuilder()
+//            urlBuilder.addEncodedQueryParameter("type", type)
+//            urlBuilder.addEncodedQueryParameter("value", value)
+
+            val urlString = urlBuilder.toString()
+            Log.d("완성주소", urlString)
+
+            //Request를 만들 때 header도 같이 첨부하는 형식
+            val request = Request.Builder().url(urlString).get().header("X-Http-Token",ContextUtil.getToken(context)).build()
 
 //            API 호출 client
 

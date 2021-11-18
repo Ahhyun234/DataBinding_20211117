@@ -18,7 +18,7 @@ class LogInActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_logIn)
 
         setupEvent()
         setValues()
@@ -37,10 +37,7 @@ class LogInActivity : BaseActivity() {
             val inputPW = binding.edtPW.text.toString()
 
 //            서버에 이메일/비번이 맞는 계정인지 로그인 요청
-            ServerUtil.postRequestLogIN(
-                inputEmail,
-                inputPW,
-                object : ServerUtil.JsonResponseHandler {
+            ServerUtil.postRequestLogIN(inputEmail,inputPW,object : ServerUtil.JsonResponseHandler {
                     override fun onResponse(jsonObject: JSONObject) {
 
 //                        이 response가 main입장에서는 로그인 API를 호출하고 JsonObj를 받아서 돌아온 상황이기 때문에
