@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.TextView
 import com.nepplus.databinding_20211117.R
 import com.nepplus.databinding_20211117.datas.TopicData
 
@@ -20,6 +22,13 @@ class TopicAdapter(val mContext: Context, val resId: Int, val mList: List<TopicD
             tempRow = mInflater.inflate(R.layout.topic_list_item, null)
         }
         val row = tempRow!!
+
+        val data = mList[position]
+        val imgTopic = row.findViewById<ImageView>(R.id.imgTopic)
+        val txtTopic = row.findViewById<TextView>(R.id.txtTopicTitle)
+
+        txtTopic.text = data.title
+
         return row
 
     }
