@@ -1,5 +1,6 @@
 package com.nepplus.databinding_20211117
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -27,6 +28,12 @@ class MainActivity2 : BaseActivity() {
     }
 
     override fun setupEvent() {
+
+        binding.topicListView.setOnItemClickListener { adapterView, view, position, l ->
+
+            val myIntent = Intent(mContext,ViewTopicDetailActivity::class.java)
+            startActivity(myIntent)
+        }
 
     }
 
