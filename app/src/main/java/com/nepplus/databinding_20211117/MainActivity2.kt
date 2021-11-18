@@ -35,6 +35,15 @@ class MainActivity2 : BaseActivity() {
         ServerUtil.getRequestMyInfo(mContext, object : ServerUtil.JsonResponseHandler {
             override fun onResponse(jsonObject: JSONObject) {
 
+                val dataObj = jsonObject.getJSONObject("data")
+                val userObj = dataObj.getJSONObject("user")
+                val nickname = userObj.getString("nick_name")
+
+                runOnUiThread {
+                    binding.txtUserNickName.text = nickname
+
+                }
+
 
             }
         })
