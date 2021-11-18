@@ -13,6 +13,9 @@
         android:theme="@style/Theme.DataBinding_20211117"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MainActivity2"
+            android:exported="true" />
+        <activity
             android:name=".SignUp"
             android:exported="true" />
         <activity

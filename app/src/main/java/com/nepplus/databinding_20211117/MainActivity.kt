@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import com.nepplus.databinding_20211117.databinding.ActivityLogInBinding
 import com.nepplus.databinding_20211117.utils.ServerUtil
@@ -58,6 +59,15 @@ class LogInActivity : BaseActivity() {
 
                                 Toast.makeText(mContext, "${nick_name}님 환영합니다.", Toast.LENGTH_SHORT)
                                     .show()
+
+                                val token = jsonObject.getString("token")
+//                                **따낸 토큰을 Shared preference라는 공간에 토큰 저장
+
+
+//                              ////////////////////////////메인으로 이동
+                                val myIntent = Intent(mContext,MainActivity2::class.java)
+                                startActivity(myIntent)
+
                             } else {
                                 Toast.makeText(mContext, reason.toString(), Toast.LENGTH_SHORT)
                                     .show()
