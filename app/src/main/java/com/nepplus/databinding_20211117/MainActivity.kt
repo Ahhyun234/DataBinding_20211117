@@ -1,5 +1,6 @@
 package com.nepplus.databinding_20211117
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +24,12 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvent() {
+
+        binding.btnSignUp.setOnClickListener {
+            val myIntent = Intent(mContext,SignUp::class.java)
+            startActivity(myIntent)
+        }
+
         binding.btnLogIn.setOnClickListener {
             val inputEmail = binding.edtID.text.toString()
             val inputPW = binding.edtPW.text.toString()
