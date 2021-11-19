@@ -25,7 +25,11 @@ class MainActivity2 : BaseActivity() {
 
         setupEvent()
         setValues()
+        setCustomActionBar()
+
     }
+
+
 
     override fun setupEvent() {
 
