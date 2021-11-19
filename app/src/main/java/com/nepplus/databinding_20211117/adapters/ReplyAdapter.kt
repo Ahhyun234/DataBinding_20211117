@@ -68,6 +68,13 @@ class ReplyAdapter(val mContext: Context, val resId: Int, val mList: List<ReplyD
         txtDislikeCount.setOnClickListener {
 //             이 댓글에 싫어요를 남겼다고 API호출
 
+            ServerUtil.postRequestReplyLikeOrDislike(mContext,data.id,false,object :ServerUtil.JsonResponseHandler{
+                override fun onResponse(jsonObject: JSONObject) {
+
+                }
+
+            })
+
         }
 
         return row
