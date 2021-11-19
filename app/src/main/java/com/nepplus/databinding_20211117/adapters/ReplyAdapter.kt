@@ -50,6 +50,17 @@ class ReplyAdapter(val mContext: Context, val resId: Int, val mList: List<ReplyD
         val sdf = SimpleDateFormat("yyyy/MM/dd a h시 m분")
 
         txtCreatedAt.text = data.getFormmatedCreatedAt()
+
+
+        txtlikeCount.setOnClickListener{
+//            이 댓글에 좋아요를 남겼다고 서버 api를 호출할것
+        }
+
+        txtDislikeCount.setOnClickListener {
+//             이 댓글에 싫어요를 남겼다고 API호출
+
+        }
+
         return row
 
     }
