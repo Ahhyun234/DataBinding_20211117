@@ -11,6 +11,7 @@ class TopicData :Serializable {
     var id =0 //int가 들어올 자리
     var title = "" //String이 들어올 자리
     var imageUrl = ""
+    var replyCount = 0
 
     companion object{
 
@@ -19,9 +20,11 @@ class TopicData :Serializable {
 
         fun getTopicDataFromJson(jsonObject: JSONObject):TopicData{
             val resultTopicData = TopicData
-            resultTopicData.id=jsonObject.getInt("id")
+            resultTopicData.id =jsonObject.getInt("id")
             resultTopicData.title = jsonObject.getString("title")
-            resultTopicData.imageUrl=jsonObject
+            resultTopicData.imageUrl =jsonObject
+            resultTopicData.reply =jsonObject.getInt("reply_")
+
                     return
 
         }

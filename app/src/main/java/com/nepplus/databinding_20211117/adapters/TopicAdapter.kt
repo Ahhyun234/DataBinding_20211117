@@ -27,9 +27,12 @@ class TopicAdapter(val mContext: Context, val resId: Int, val mList: List<TopicD
         val data = mList[position]
         val imgTopic = row.findViewById<ImageView>(R.id.imgTopic)
         val txtTopic = row.findViewById<TextView>(R.id.txtTopicTitle)
+        val txtReplyCount = row.findViewById<TextView>(R.id.txtReplyTitle)
 
         txtTopic.text = data.title
         Glide.with(mContext).load(data.imageUrl).into(imgTopic)
+
+        txtReplyCount.text = "현재 댓글 갯수 ${txtReplyCount}개"
         return row
 
     }

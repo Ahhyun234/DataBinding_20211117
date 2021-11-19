@@ -20,14 +20,35 @@
            android:layout_height="match_parent"
            android:background="#80000000"/>
 
-       <TextView
-           android:id="@+id/txtTopicTitle"
+       <LinearLayout
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:text="토론주제"
-           android:textColor="@color/white"
+           android:orientation="vertical"
            android:layout_gravity="center"
-           android:textSize="20sp"/>
+           android:gravity="center">
+
+           <TextView
+               android:id="@+id/txtTopicTitle"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="토론주제"
+               android:textColor="@color/white"
+               android:layout_gravity="center"
+               android:textSize="20sp"/>
+
+           <TextView
+               android:id="@+id/txtReplyTitle"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="현재 댓글"
+               android:layout_marginTop="5dp"
+               />
+
+
+
+       </LinearLayout>
+
+
 
 
    </FrameLayout>
