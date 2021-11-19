@@ -39,7 +39,7 @@ class ReplyAdapter(val mContext: Context, val resId: Int, val mList: List<ReplyD
 
         val sdf = SimpleDateFormat("yyyy/MM/dd a h시 m분")
 
-        txtCreatedAt.text = sdf.format(data.createAt.time)
+        txtCreatedAt.text = data.getFormmatedCreatedAt()
         return row
 
     }
