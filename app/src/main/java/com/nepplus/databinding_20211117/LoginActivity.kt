@@ -4,9 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
-import com.google.android.material.internal.ContextUtils
 import com.nepplus.databinding_20211117.databinding.ActivityLoginBinding
 import com.nepplus.databinding_20211117.utils.ContextUtil
 import com.nepplus.databinding_20211117.utils.ServerUtil
@@ -28,7 +26,7 @@ class LoginActivity : BaseActivity() {
     override fun setupEvent() {
 
         binding.btnSignUp.setOnClickListener {
-            val myIntent = Intent(mContext, SignUp::class.java)
+            val myIntent = Intent(mContext, SignUpActivity::class.java)
             startActivity(myIntent)
         }
 

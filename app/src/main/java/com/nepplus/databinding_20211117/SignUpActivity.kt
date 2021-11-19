@@ -8,7 +8,7 @@ import com.nepplus.databinding_20211117.databinding.ActivitySignUpBinding
 import com.nepplus.databinding_20211117.utils.ServerUtil
 import org.json.JSONObject
 
-class SignUp : BaseActivity() {
+class SignUpActivity : BaseActivity() {
 
     lateinit var binding: ActivitySignUpBinding
 
