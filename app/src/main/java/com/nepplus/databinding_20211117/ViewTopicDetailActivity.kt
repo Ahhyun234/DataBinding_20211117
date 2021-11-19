@@ -27,6 +27,17 @@ class ViewTopicDetailActivity : BaseActivity() {
 
     override fun setupEvent() {
 
+        binding.btnVote01.setOnClickListener {
+//            첫진영에 투표 -> 서버 api 호출 -> 새로고침
+            ServerUtil.postRequestLogVote(mContext,mTopicData.sideList[0].id, object : ServerUtil.JsonResponseHandler{
+                override fun onResponse(jsonObject: JSONObject) {
+
+                }
+
+            })
+
+        }
+
     }
 
     override fun setValues() {
