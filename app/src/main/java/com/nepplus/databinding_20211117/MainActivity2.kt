@@ -67,10 +67,13 @@ class MainActivity2 : BaseActivity() {
 //                    하나의 토론 주제를 표현하는 중괄호 추출
                     val topicObj = topicsArr.getJSONObject(i)
 //                    목록에 뿌려줄 Topic Data 형태로 변환
-                    val topicData = TopicData()
-                    topicData.id = topicObj.getInt("id")
-                    topicData.title = topicObj.getString("title")
-                    topicData.imageUrl = topicObj.getString("img_url")
+
+                    val topicData = TopicData.getTopicDataFromJson(i)
+
+//                    val topicData = TopicData()
+//                    topicData.id = topicObj.getInt("id")
+//                    topicData.title = topicObj.getString("title")
+//                    topicData.imageUrl = topicObj.getString("img_url")
 
 //                    완성된 topicData => mtopicList에 추가
                     mTopicList.add(topicData)
