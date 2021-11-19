@@ -13,7 +13,7 @@ import com.nepplus.databinding_20211117.datas.ReplyData
 import com.nepplus.databinding_20211117.datas.TopicData
 
 class ReplyAdapter(val mContext: Context, val resId: Int, val mList: List<ReplyData>) :
-    ArrayAdapter<TopicData>(mContext, resId, mList) {
+    ArrayAdapter<ReplyData>(mContext, resId, mList) {
 
     val mInflater = LayoutInflater.from(mContext)
 

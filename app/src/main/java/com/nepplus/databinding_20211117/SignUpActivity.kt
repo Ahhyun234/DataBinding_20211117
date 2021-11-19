@@ -67,8 +67,7 @@ class SignUpActivity : BaseActivity() {
                     override fun onResponse(jsonObj: JSONObject) {
 
                         val code = jsonObj.getInt("code")
-                        val message = jsonObj.getString("message")
-                        runOnUiThread {
+
 
                         if (code == 200) {
                             val dataObj = jsonObj.getJSONObject("data")
@@ -83,13 +82,16 @@ class SignUpActivity : BaseActivity() {
                                 ).show()
                             finish()
                             }
-                        } else {
+                        } else {val message = jsonObj.getString("message")
 
+                            runOnUiThread{
                                 Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+
+                            }
+
+
                             }
 //                        실패-> 서버가 알려주는 실패 사유를 알려주자 
-                        }
-
 
                     }
 

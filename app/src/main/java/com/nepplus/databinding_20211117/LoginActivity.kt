@@ -50,7 +50,6 @@ class LoginActivity : BaseActivity() {
                         Log.d("화면에서의 obj", jsonObject.toString())
 
                         val code = jsonObject.getInt("code")
-                        val reason = jsonObject.getString("message")
 
 //                       code:200 -> 로그인 성공 토스트
 
@@ -76,8 +75,10 @@ class LoginActivity : BaseActivity() {
 //                              ////////////////////////////메인으로 이동
                                 val myIntent = Intent(mContext,MainActivity2::class.java)
                                 startActivity(myIntent)
+                                finish()
 
                             } else {
+                                val reason = jsonObject.getString("message")
                                 Toast.makeText(mContext, reason.toString(), Toast.LENGTH_SHORT)
                                     .show()
                             }

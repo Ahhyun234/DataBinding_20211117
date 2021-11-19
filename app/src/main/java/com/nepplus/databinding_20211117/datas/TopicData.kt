@@ -27,7 +27,7 @@ class TopicData :Serializable {
             resultTopicData.id =jsonObject.getInt("id")
             resultTopicData.title = jsonObject.getString("title")
             resultTopicData.imageUrl =jsonObject.getString("img_url")
-            resultTopicData.reply =jsonObject.getInt("reply_count")
+            resultTopicData.replyCount =jsonObject.getInt("reply_count")
 
 //            토론주제 파싱 -> json array등장 -> 선택 진영 목록
 
@@ -35,8 +35,8 @@ class TopicData :Serializable {
             for (i in 0 until sidesArr.length()){
             val sideObj = sidesArr.getJSONObject(i)
 
-            val sidedata = Sidedata.getSideDataFromJson(sideObj)
-            resultTopicData.sideList.add(sidedata)
+            val sideData = Sidedata.getSideDataFromJson(sideObj)
+            resultTopicData.sideList.add(sideData)
             }
                     return resultTopicData
         }

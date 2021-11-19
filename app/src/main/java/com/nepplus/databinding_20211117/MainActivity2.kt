@@ -59,7 +59,7 @@ class MainActivity2 : BaseActivity() {
 
     //    /////////////리스트뷰//////////////////////////////////////////////////
     fun getTopicListFromServer() {
-        ServerUtil.getMainInfo(mContext, object : ServerUtil.JsonResponseHandler {
+        ServerUtil.getRequestMyInfo(mContext, object : ServerUtil.JsonResponseHandler {
             override fun onResponse(jsonObject: JSONObject) {
                 val dataObj = jsonObject.getJSONObject("data")
                 val topicsArr = dataObj.getJSONArray("topics")
@@ -68,7 +68,7 @@ class MainActivity2 : BaseActivity() {
                     val topicObj = topicsArr.getJSONObject(i)
 //                    목록에 뿌려줄 Topic Data 형태로 변환
 
-                    val topicData = TopicData.getTopicDataFromJson(i)
+                    val topicData = TopicData.getTopicDataFromJson(topicObj)
 
 //                    val topicData = TopicData()
 //                    topicData.id = topicObj.getInt("id")

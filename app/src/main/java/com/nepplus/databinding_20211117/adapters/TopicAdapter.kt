@@ -32,7 +32,7 @@ class TopicAdapter(val mContext: Context, val resId: Int, val mList: List<TopicD
         txtTopic.text = data.title
         Glide.with(mContext).load(data.imageUrl).into(imgTopic)
 
-        txtReplyCount.text = "현재 댓글 갯수 ${txtReplyCount}개"
+        txtReplyCount.text = "현재 댓글 갯수 ${data.replyCount}개"
         return row
 
     }

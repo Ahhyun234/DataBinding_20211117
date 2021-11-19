@@ -20,7 +20,7 @@ class ViewTopicDetailActivity : BaseActivity() {
     lateinit var mTopicData: TopicData
 
     val mReplyList = ArrayList<ReplyData>()
-    lateinit var mReplyAdapter
+    lateinit var mReplyAdapter:ReplyAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +82,9 @@ class ViewTopicDetailActivity : BaseActivity() {
 //        현재 진행 상황을 조회하는 API를 호출 -> 토론 진영 목록/몇표 획득
         getTopicDetailFromServer()
 
-        mReplyAdapter = ReplyAdapter
+        mReplyAdapter = ReplyAdapter(mContext, R.layout.reply_list_item, mReplyList)
+        binding.replyListView.adapter = mReplyAdapter
+
     }
 
     fun getTopicDetailFromServer() {
@@ -90,15 +92,15 @@ class ViewTopicDetailActivity : BaseActivity() {
 
         ServerUtil.getRequestTopicDetail(
             mContext,
-            mTopicData.id,
+            mTopicData.id,"NEW",
             object : ServerUtil.JsonResponseHandler {
                 override fun onResponse(jsonObject: JSONObject) {
 
                     val dataObj = jsonObject.getJSONObject("data")
-                    val topicObj = dataObj.getJSONObject('topic')
+                    val topicObj = dataObj.getJSONObject("topic")
 
 //                topic 토론 주제가 담긴 json Object 토픽 데이타변환 함수의 재료로 사용
-                    mTopicData TopicData . getTopicDataFromJson (topicObj)
+                    mTopicData = TopicData. getTopicDataFromJson (topicObj)
 
                     runOnUiThread {
                         refreshUi()

@@ -18,7 +18,7 @@ class ContextUtil {
 
         fun getAutoLogin(context: Context):Boolean{
             val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
-            return pref.getBoolean(AUTO_LOGIN,false)!!
+            return pref.getBoolean(AUTO_LOGIN,false)
         }
 
         fun setLoginEmail(context: Context,email:String){
