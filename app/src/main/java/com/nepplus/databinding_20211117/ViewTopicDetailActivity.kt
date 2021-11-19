@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.nepplus.databinding_20211117.adapters.TopicAdapter
 import com.nepplus.databinding_20211117.databinding.ActivityViewTopicDetailBinding
+import com.nepplus.databinding_20211117.datas.ReplyData
 import com.nepplus.databinding_20211117.datas.TopicData
 import com.nepplus.databinding_20211117.utils.ServerUtil
 import org.json.JSONObject
@@ -16,6 +17,8 @@ class ViewTopicDetailActivity : BaseActivity() {
     lateinit var binding: ActivityViewTopicDetailBinding
 
     lateinit var mTopicData: TopicData
+
+    val mReplyList = ArrayList<ReplyData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,6 +97,15 @@ class ViewTopicDetailActivity : BaseActivity() {
 
                     runOnUiThread {
                         refreshUi()
+                    }
+
+                    val repliesArr = topicObj.getJSONArray("replies")
+                    for(i in 0 until repliesArr.length()){
+
+                        val replyObj = repliesArr.getJSONObject(i)
+                        val replyData = ReplyData.getReplyDataFromJson(replyObj)
+                        mReplyList.add(replyData)
+
                     }
 
                 }

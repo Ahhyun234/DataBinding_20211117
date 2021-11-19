@@ -217,7 +217,7 @@ class ServerUtil {
 
 //        ////////////////
 
-        fun getRequestTopicDetail(context: Context, topicId: Int, handler: JsonResponseHandler?) {
+        fun getRequestTopicDetail(context: Context, topicId: Int,orderType:String,NEW, handler: JsonResponseHandler?) {
 
 //            1. 어디로 갈 것인지 +  2. 어떤 파라미터 => GET 방식은 이것을 같이 씀
 //            url을 만드는 과정이 복잡하기 때문에 한단계씩 샇아나가는 방식으로 url작성
