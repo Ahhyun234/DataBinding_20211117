@@ -27,6 +27,8 @@ class ReplyAdapter(val mContext: Context, val resId: Int, val mList: List<ReplyD
 
         val data = mList[position]
 
+        val txtReplycontent = row.findViewById<TextView>(R.id.txtReplyContent)
+        txtReplycontent.text=data.content
 
 
         return row

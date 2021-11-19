@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
+import com.nepplus.databinding_20211117.adapters.ReplyAdapter
 import com.nepplus.databinding_20211117.adapters.TopicAdapter
 import com.nepplus.databinding_20211117.databinding.ActivityViewTopicDetailBinding
 import com.nepplus.databinding_20211117.datas.ReplyData
@@ -19,6 +20,7 @@ class ViewTopicDetailActivity : BaseActivity() {
     lateinit var mTopicData: TopicData
 
     val mReplyList = ArrayList<ReplyData>()
+    lateinit var mReplyAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,9 +81,12 @@ class ViewTopicDetailActivity : BaseActivity() {
 
 //        현재 진행 상황을 조회하는 API를 호출 -> 토론 진영 목록/몇표 획득
         getTopicDetailFromServer()
+
+        mReplyAdapter = ReplyAdapter
     }
 
     fun getTopicDetailFromServer() {
+
 
         ServerUtil.getRequestTopicDetail(
             mContext,
