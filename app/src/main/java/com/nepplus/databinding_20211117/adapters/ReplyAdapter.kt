@@ -1,6 +1,7 @@
 package com.nepplus.databinding_20211117.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,8 @@ import com.bumptech.glide.Glide
 import com.nepplus.databinding_20211117.R
 import com.nepplus.databinding_20211117.datas.ReplyData
 import com.nepplus.databinding_20211117.datas.TopicData
+import com.nepplus.databinding_20211117.utils.ServerUtil
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 
 class ReplyAdapter(val mContext: Context, val resId: Int, val mList: List<ReplyData>) :
@@ -54,6 +57,12 @@ class ReplyAdapter(val mContext: Context, val resId: Int, val mList: List<ReplyD
 
         txtlikeCount.setOnClickListener{
 //            이 댓글에 좋아요를 남겼다고 서버 api를 호출할것
+            ServerUtil.postRequestReplyLikeOrDislike(mContext, data.id,true,object :ServerUtil.JsonResponseHandler{
+                override fun onResponse(jsonObject: JSONObject) {
+
+                }
+
+            })
         }
 
         txtDislikeCount.setOnClickListener {
