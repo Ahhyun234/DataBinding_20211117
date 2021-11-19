@@ -28,6 +28,7 @@ class ViewTopicDetailActivity : BaseActivity() {
 
         setupEvent()
         setValues()
+
     }
 
 

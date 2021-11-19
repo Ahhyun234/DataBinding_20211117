@@ -1,5 +1,6 @@
 package com.nepplus.databinding_20211117
 
+import android.os.Bundle
 import android.widget.Toolbar
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,17 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun setupEvent()
 
     abstract fun setValues()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+//        액션바가 있는 화면에서만 실행되도록 함
+        supportActionBar?.let {
+//            엑션바가 null이 아닐때만 해달라는 코드
+            setCustomActionBar()
+        }
+
+    }
 
     val mContext = this
 
