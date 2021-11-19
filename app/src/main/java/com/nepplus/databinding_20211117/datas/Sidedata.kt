@@ -2,8 +2,9 @@ package com.nepplus.databinding_20211117.datas
 
 import android.view.WindowInsets
 import org.json.JSONObject
+import java.io.Serializable
 
-class Sidedata {
+class Sidedata : Serializable{
 
     var id = 0
     var title = ""

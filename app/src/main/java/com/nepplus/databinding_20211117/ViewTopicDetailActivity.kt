@@ -67,7 +67,10 @@ class ViewTopicDetailActivity : BaseActivity() {
 
         binding.txtTopicTitle.text = mTopicData.title
         Glide.with(mContext).load(mTopicData.imageUrl).into(binding.imgTopic)
-        binding.txtReplyCount.text = "댓글 갯수 : ${} 개"
+        binding.txtReplyTitle.text = "댓글 갯수 : ${mTopicData.replyCount} 개"
+
+        binding.txtSideTitle01.text = mTopicData.sideList[0].title
+        binding.txtSideTitle02.text = mTopicData.sideList[1].title
 
     }
 
