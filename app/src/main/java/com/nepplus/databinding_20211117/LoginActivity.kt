@@ -25,6 +25,14 @@ class LoginActivity : BaseActivity() {
 
     override fun setupEvent() {
 
+        binding.autoLoginCheckBox.setOnCheckedChangeListener { compoundButton, isChecked ->
+//            Log.d("체크박스",isChecked.toString())
+//              선택한 값을 ContextUtil 로 저장
+            ContextUtil.setAutoLogin(mContext,isChecked)
+
+
+        }
+
         binding.btnSignUp.setOnClickListener {
             val myIntent = Intent(mContext, SignUpActivity::class.java)
             startActivity(myIntent)
@@ -90,6 +98,7 @@ class LoginActivity : BaseActivity() {
     override fun setValues() {
 
     binding.edtID.setText(ContextUtil.getLoginEmail(mContext))
+        binding.autoLoginCheckBox.isChecked = ContextUtil.getAutoLogin(mContext)
 
     }
 
