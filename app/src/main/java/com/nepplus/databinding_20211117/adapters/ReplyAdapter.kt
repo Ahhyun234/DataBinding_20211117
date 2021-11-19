@@ -32,10 +32,20 @@ class ReplyAdapter(val mContext: Context, val resId: Int, val mList: List<ReplyD
         val txtWriterNickName = row.findViewById<TextView>(R.id.txtWriterNickName)
         val txtSelectedSide = row.findViewById<TextView>(R.id.txtSelectedSide)
         val txtCreatedAt = row.findViewById<TextView>(R.id.txtCreatedAt)
+        val txtReplyCount = row.findViewById<TextView>(R.id.txtReplyCount)
+        val txtlikeCount = row.findViewById<TextView>(R.id.txtLikeCount)
+        val txtDislikeCount = row.findViewById<TextView>(R.id.txtDislikeCount)
+
+
+
 
         txtWriterNickName.text=data.writer.nickname
         txtReplycontent.text=data.content
         txtSelectedSide.text = "( ${data.selectedSide.title} )"
+
+        txtReplyCount.text="답글: ${data.replyCount} 개"
+        txtlikeCount.text="좋아요: ${data.likeCount} 개"
+        txtDislikeCount.text="좋아요: ${data.dislikeCount} 개"
 
         val sdf = SimpleDateFormat("yyyy/MM/dd a h시 m분")
 

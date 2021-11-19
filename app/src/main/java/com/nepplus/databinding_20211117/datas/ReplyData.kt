@@ -20,9 +20,9 @@ class ReplyData {
 //    //좋아요 싫어요 댓글 관련 숫자 파싱
     var likeCount = 0
     var dislikeCount = 0
-    var mylike =0
-    var myDislike =0
-    var jf
+    var mylike =false
+    var myDislike =false
+    var replyCount =0
     
 //    내핸드폰의 시간을 고려해서 시차를 보정해서 시간을 보여주는 함수
     fun getFormmatedCreatedAt():String{
@@ -65,7 +65,10 @@ class ReplyData {
             replyData.tempCreateAt.time = sdf.parse(createdAtStr)
 
             replyData.likeCount = jsonObject.getInt("like_count")
-            replyData.dislikeCount = fff
+            replyData.dislikeCount = jsonObject.getInt("dislike_count")
+            replyData.mylike = jsonObject.getBoolean("mylike")
+            replyData.myDislike = jsonObject.getBoolean("mydislike")
+            replyData.replyCount = jsonObject.getInt("reply_count")
 
             return replyData
         }
