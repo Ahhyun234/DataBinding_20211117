@@ -107,6 +107,9 @@ class ViewTopicDetailActivity : BaseActivity() {
                     }
 
                     val repliesArr = topicObj.getJSONArray("replies")
+
+                    mReplyList.clear()
+
                     for(i in 0 until repliesArr.length()){
 
                         val replyObj = repliesArr.getJSONObject(i)

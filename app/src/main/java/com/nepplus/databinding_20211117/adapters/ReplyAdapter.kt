@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.nepplus.databinding_20211117.R
+import com.nepplus.databinding_20211117.ViewTopicDetailActivity
 import com.nepplus.databinding_20211117.datas.ReplyData
 import com.nepplus.databinding_20211117.datas.TopicData
 import com.nepplus.databinding_20211117.utils.ServerUtil
@@ -59,6 +60,9 @@ class ReplyAdapter(val mContext: Context, val resId: Int, val mList: List<ReplyD
 //            이 댓글에 좋아요를 남겼다고 서버 api를 호출할것
             ServerUtil.postRequestReplyLikeOrDislike(mContext, data.id,true,object :ServerUtil.JsonResponseHandler{
                 override fun onResponse(jsonObject: JSONObject) {
+//                    어댑터를 들고있는 상세현황 화면의 기능을 활용=> 토론 주제 상세 다시 가져오기 (댓글도 가져오게 됨)
+
+                    (mContext as ViewTopicDetailActivity).getTopicDetailFromServer()
 
                 }
 
