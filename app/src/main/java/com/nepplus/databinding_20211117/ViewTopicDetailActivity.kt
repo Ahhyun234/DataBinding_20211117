@@ -1,5 +1,6 @@
 package com.nepplus.databinding_20211117
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -33,6 +34,12 @@ class ViewTopicDetailActivity : BaseActivity() {
 
 
     override fun setupEvent() {
+
+        binding.btnWriteReply.setOnClickListener {
+
+            val myIntent = Intent(mContext,EditReplyActivity::class.java)
+            startActivity(myIntent)
+        }
 
         binding.btnVote01.setOnClickListener {
 //            첫진영에 투표 -> 서버 api 호출 -> 새로고침
