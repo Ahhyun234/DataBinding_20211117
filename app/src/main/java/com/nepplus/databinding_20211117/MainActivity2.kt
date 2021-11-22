@@ -26,11 +26,8 @@ class MainActivity2 : BaseActivity() {
         setupEvent()
         setValues()
 
-
     }
-
-
-
+    
     override fun setupEvent() {
 
         binding.topicListView.setOnItemClickListener { adapterView, view, position, l ->

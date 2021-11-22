@@ -60,12 +60,12 @@ class ServerUtil {
 
 //                    bodyString은 Json양식으로 가공됨-> 한글도 임시 변환 된 상태 (encoding)
 //                    일반 String -> JsonObject로 변환 (한글도 원상복구)
-                    val jsonObj = JSONObject(bodyString)
+                    val jsonObject = JSONObject(bodyString)
 
-                    Log.d("서버응답", jsonObj.toString())
+                    Log.d("서버응답", jsonObject.toString())
 
 //                    나를 호출한 화면에게 jsonObj를 처리하는 일처리를 미루자
-                    handler?.onResponse(jsonObj)
+                    handler?.onResponse(jsonObject)
 
                 }
 
@@ -168,9 +168,9 @@ class ServerUtil {
 
                 override fun onResponse(call: Call, response: Response) {
                     val bodyString = response.body!!.string()
-                    val jsonobj = JSONObject(bodyString)
-                    Log.d("서버응답", jsonobj.toString())
-                    handler?.onResponse(jsonobj)
+                    val jsonObject = JSONObject(bodyString)
+                    Log.d("서버응답", jsonObject.toString())
+                    handler?.onResponse(jsonObject)
 
                 }
 

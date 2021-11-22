@@ -64,6 +64,19 @@ class ReplyAdapter(val mContext: Context, val resId: Int, val mList: List<ReplyD
             txtDislikeCount.setTextColor(mContext.resources.getColor(R.color.gray))
         }
 
+
+        if (data.myDislike){
+//            red border박스로 txt like count 의 배경을 변경
+            txtlikeCount.setBackgroundResource(R.drawable.res_border_box)
+
+            txtlikeCount.setTextColor(mContext.resources.getColor(R.color.red))
+
+        }
+        else{
+            txtlikeCount.setBackgroundColor(R.drawable.gray_border_box)
+            txtDislikeCount.setTextColor(mContext.resources.getColor(R.color.gray))
+        }
+
         val sdf = SimpleDateFormat("yyyy/MM/dd a h시 m분")
 
         txtCreatedAt.text = data.getFormmatedCreatedAt()

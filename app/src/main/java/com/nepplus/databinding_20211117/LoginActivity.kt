@@ -64,7 +64,7 @@ class LoginActivity : BaseActivity() {
                                 Toast.makeText(mContext, "${nick_name}님 환영합니다.", Toast.LENGTH_SHORT)
                                     .show()
 
-                                val token = jsonObject.getString("token")
+                                val token = dataObj.getString("token")
 //                                **따낸 토큰을 Shared preference라는 공간에 토큰 저장
                                 ContextUtil.setToken(mContext,token)
 
