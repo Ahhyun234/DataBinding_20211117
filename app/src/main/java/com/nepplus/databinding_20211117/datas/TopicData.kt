@@ -13,9 +13,13 @@ class TopicData :Serializable {
     var imageUrl = ""
     var replyCount = 0
 
+
 //    토론 주제의 하위 목록 -> 선택 진영 sidedata 목록(ArrayList)
     var sideList = ArrayList<Sidedata>()
 
+
+//     내가 투표 한 진영은 어디인가?
+    var mySide : Sidedata? = null
 
     companion object{
 
@@ -37,6 +41,13 @@ class TopicData :Serializable {
 
             val sideData = Sidedata.getSideDataFromJson(sideObj)
             resultTopicData.sideList.add(sideData)
+            }
+
+//            s내가 선택한 진영이 어딘지? 파싱 -> null상태로 내려올 수도 있다.
+//            jsonObj에게, 파싱 하려는 항목이 null 이 아닌지? 그때만 파싱 하자
+
+            if (!jsonObject.isNull("my_side")){
+                resultTopicData.mySide = Sidedata.getSideDataFromJson(jsonObject.getJSONObject("my_side"))
             }
                     return resultTopicData
         }
