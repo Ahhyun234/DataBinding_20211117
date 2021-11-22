@@ -44,8 +44,11 @@ class MainActivity2 : BaseActivity() {
 
     override fun setValues() {
 
+
+
 //        액션바의 뒤로가기 버튼을 메인에서 숨김 (상속 받은 변수 활용)
         btnBack.visibility = View.GONE
+        btnProfile.visibility=View.VISIBLE
 
 
         getTopicListFromServer()

@@ -1,5 +1,6 @@
 package com.nepplus.databinding_20211117
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.ActionBar
@@ -45,6 +46,9 @@ abstract class BaseActivity : AppCompatActivity() {
         btnProfile = defActionBar.customView.findViewById(R.id.btnProfile)
 
         btnProfile.setOnClickListener {
+
+            val myIntent = Intent(mContext, MyProfileActivity::class.java)
+            startActivity(myIntent)
 
         }
     }
