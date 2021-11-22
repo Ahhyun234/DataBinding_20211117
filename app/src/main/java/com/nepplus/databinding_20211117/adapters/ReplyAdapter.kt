@@ -91,7 +91,7 @@ class ReplyAdapter(val mContext: Context, val resId: Int, val mList: List<ReplyD
                 override fun onResponse(jsonObject: JSONObject) {
 //                    어댑터를 들고있는 상세현황 화면의 기능을 활용=> 토론 주제 상세 다시 가져오기 (댓글도 가져오게 됨)
 
-                    (mContext as ViewTopicDetailActivity).getTopicDetailFromServer()
+                    (mContext as ViewReplyDetailActivity).getReplyDetailfromServer()
 
                 }
 
@@ -104,7 +104,7 @@ class ReplyAdapter(val mContext: Context, val resId: Int, val mList: List<ReplyD
             ServerUtil.postRequestReplyLikeOrDislike(mContext,data.id,false,object :ServerUtil.JsonResponseHandler{
                 override fun onResponse(jsonObject: JSONObject) {
 
-                    (mContext as ViewTopicDetailActivity).getTopicDetailFromServer()
+                    (mContext as ViewReplyDetailActivity).getReplyDetailfromServer()
 
                 }
 
