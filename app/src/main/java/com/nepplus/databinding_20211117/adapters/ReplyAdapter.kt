@@ -114,8 +114,11 @@ class ReplyAdapter(val mContext: Context, val resId: Int, val mList: List<ReplyD
 
         txtReplyCount.setOnClickListener {
             val myIntent = Intent(mContext,ViewReplyDetailActivity::class.java)
+            myIntent.putExtra("reply",data)
             mContext.startActivity(myIntent)
         }
+
+
 
         return row
 
