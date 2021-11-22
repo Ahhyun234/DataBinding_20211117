@@ -403,6 +403,51 @@ class ServerUtil {
 
 
         }
+
+//        대댓글 목록을 담을것
+        fun getRequestReplyDetail(context: Context,
+                                  replyId: Int,
+                                  handler: JsonResponseHandler?) {
+
+//            1. 어디로 갈 것인지 +  2. 어떤 파라미터 => GET 방식은 이것을 같이 씀
+//            url을 만드는 과정이 복잡하기 때문에 한단계씩 샇아나가는 방식으로 url작성
+            val urlBuilder = "${HOST_URL}/topic_reply".toHttpUrlOrNull()!!.newBuilder()
+
+//            주소양식: Path/topic/3 => 3 PathSegment라고 부름
+//            주소양식: Query - topic?name = 이아현 QuaryParameter라고 부름
+            urlBuilder.addPathSegment(replyId.toString())
+
+//            urlBuilder.addEncodedQueryParameter("type", type)
+//            urlBuilder.addEncodedQueryParameter("value", value)
+
+//              최종 완성된 주소 string으로 저장
+            val urlString = urlBuilder.toString()
+            Log.d("완성주소", urlString)
+
+
+//            3. 어떤 메소드 + 정보 종합생성
+            val request = Request.Builder().url(urlString).get().build()
+
+//            API 호출 client
+
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string()
+                    val jsonobj = JSONObject(bodyString)
+                    Log.d("서버응답", jsonobj.toString())
+                    handler?.onResponse(jsonobj)
+
+                }
+
+            })
+
+        }
     }
 }
 
