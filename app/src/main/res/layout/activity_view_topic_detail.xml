@@ -44,10 +44,10 @@
                     android:text="토론주제표시자리"/>
 
                 <TextView
-                    android:id="@+id/txtReplyTitle"
+                    android:id="@+id/txtReplyCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="현재 댓글"
+                    android:text="현재 댓글 갯수"
                     android:textColor="@color/white"
                     android:layout_marginTop="5dp"
                     />

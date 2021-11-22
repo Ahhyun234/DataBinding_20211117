@@ -1,24 +1,26 @@
 package com.nepplus.databinding_20211117
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil.*
 import com.nepplus.databinding_20211117.adapters.Re_ReplyAdapter
-import com.nepplus.databinding_20211117.databinding.ActivityEditReplyBinding
+import com.nepplus.databinding_20211117.databinding.ActivityViewReplyDetailBinding
 import com.nepplus.databinding_20211117.datas.ReplyData
 import com.nepplus.databinding_20211117.utils.ServerUtil
 import org.json.JSONObject
 
+
 class ViewReplyDetailActivity : BaseActivity() {
-    lateinit var binding: ViewReplyDetailActivity
-    lateinit var mReplydata : ReplyData
+
+    lateinit var binding: ActivityViewReplyDetailBinding
+
+    lateinit var mReplyData: ReplyData
     val mReplyLise = ArrayList<ReplyData>()
-    lateinit var mReReplyAdapter : mReplyData
+    lateinit var mReReplyAdapter : Re_ReplyAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=DataBindingUtil.setContentView(this, R.layout.activity_view_reply_detail)
-
+        binding= DataBindingUtil.setContentView(this,R.layout.activity_view_reply_detail)
         setupEvent()
         setValues()
     }
@@ -30,7 +32,7 @@ class ViewReplyDetailActivity : BaseActivity() {
 //            대댓글 등록 API호출
 
         val inputContent = binding.edtContent.text.toString()
-            ServerUtil.postRequestReReply(mContext,mReplydata.id,inputContent,object :ServerUtil.JsonResponseHandler{
+            ServerUtil.postRequestReReply(mContext,mReplyData.id,inputContent,object :ServerUtil.JsonResponseHandler{
                 override fun onResponse(jsonObject: JSONObject) {
 
 //                    1. 새로고침
@@ -53,28 +55,29 @@ class ViewReplyDetailActivity : BaseActivity() {
 
     override fun setValues() {
 
-        mReplydata = intent.getSerializableExtra("reply") as ReplyData
+        mReplyData = intent.getSerializableExtra("reply") as ReplyData
 
-        binding.txtSelectedSide.text = "${mReplydata.selectedSide.title}"
-        binding.txtWriterNickName.text = mReplydata.writer.nickname
-        binding.txtContent.text = mReplydata.content
+        binding.txtSelectedSide.text = "${mReplyData.selectedSide.title}"
+        binding.txtWriterNickName.text = mReplyData.writer.nickname
+        binding.txtContent.text = mReplyData.content
 
         getReplyDetailfromServer()
 
         mReReplyAdapter = Re_ReplyAdapter(mContext,R.layout.re_reply_list_item,mReplyLise)
-        dsf
+        binding.reReplyListView.adapter =  mReReplyAdapter
+
     }
 
     fun getReplyDetailfromServer(){
 
-        ServerUtil.getRequestReplyDetail(mContext,mReplydata.id,object:ServerUtil.JsonResponseHandler{
+        ServerUtil.getRequestReplyDetail(mContext,mReplyData.id,object:ServerUtil.JsonResponseHandler{
             override fun onResponse(jsonObject: JSONObject) {
 
                 val dataObj = jsonObject.getJSONObject("data")
                 val replyObj = dataObj.getJSONObject("reply")
                 val repliesArr = replyObj.getJSONArray("replies")
 
-                mReReplyAdapter.clear
+                mReReplyAdapter.clear()
 
                 for(i in 0 until repliesArr.length()){
 //                    []->{} 추출 -> replaydata로 변환 -> 대댓글 목록에 추가하자
@@ -85,7 +88,7 @@ class ViewReplyDetailActivity : BaseActivity() {
                     mReReplyAdapter.notifyDataSetChanged()
 
                     // 3. 리스트 뷰 스크롤을 맨 아래로 내려보기(댓글 갯수 -1 번째 칸으로 스크롤)
-                    binding.reReplyListView.smoothScollToPosition(mReReplyList.size-1)
+                    binding.reReplyListView.smoothScrollToPosition(mReplyLise.size-1)
                 }
             }
 

@@ -21,6 +21,7 @@ class ViewTopicDetailActivity : BaseActivity() {
     lateinit var mTopicData: TopicData
 
     val mReplyList = ArrayList<ReplyData>()
+
     lateinit var mReplyAdapter:ReplyAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +57,7 @@ class ViewTopicDetailActivity : BaseActivity() {
 //                            mTopicData를 통째로 넘겨주면 내 선택 진영도 포함되어 넘어간다
 
             val myIntent = Intent(mContext,EditReplyActivity::class.java)
-            myIntent.putExtra("myside")
+            myIntent.putExtra("myside", mTopicData)
             startActivity(myIntent)
         }
 
@@ -157,7 +158,8 @@ class ViewTopicDetailActivity : BaseActivity() {
 
         binding.txtTopicTitle.text = mTopicData.title
         Glide.with(mContext).load(mTopicData.imageUrl).into(binding.imgTopic)
-        binding.txtReplyTitle.text = "댓글 갯수 : ${mTopicData.replyCount} 개"
+
+        binding.txtReplyCount.text = "댓글 갯수 : ${mTopicData.replyCount} 개"
 
         binding.txtSideTitle01.text = mTopicData.sideList[0].title
         binding.txtSideTitle02.text = mTopicData.sideList[1].title
