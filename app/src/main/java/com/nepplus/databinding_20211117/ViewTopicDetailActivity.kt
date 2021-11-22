@@ -32,6 +32,13 @@ class ViewTopicDetailActivity : BaseActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+
+//         onResume은 이 화면이 나타날 때 마다 계속 실행 되는 함수-> 이홤면에 돌아올 때 마다 서버에서 다시 댓글목록도 물러오게 함
+        getTopicDetailFromServer()
+    }
+
 
     override fun setupEvent() {
 
