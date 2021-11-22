@@ -3,6 +3,7 @@ package com.nepplus.databinding_20211117
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.nepplus.databinding_20211117.adapters.TopicAdapter
 import com.nepplus.databinding_20211117.databinding.ActivityMain2Binding
@@ -42,6 +43,11 @@ class MainActivity2 : BaseActivity() {
     }
 
     override fun setValues() {
+
+//        액션바의 뒤로가기 버튼을 메인에서 숨김 (상속 받은 변수 활용)
+        btnBack.visibility = View.GONE
+
+
         getTopicListFromServer()
 
 //        어댑터를 객체화 해서 List 뷰 어댑터로 연결

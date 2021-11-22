@@ -11,6 +11,7 @@ abstract class BaseActivity : AppCompatActivity() {
     val mContext = this
 
     lateinit var btnBack : ImageView
+    lateinit var btnProfile : ImageView
 
     abstract fun setupEvent()
 
@@ -41,6 +42,11 @@ abstract class BaseActivity : AppCompatActivity() {
         btnBack = defActionBar.customView.findViewById(R.id.btnBack)
         finish()   //뒤로가기
 
+        btnProfile = defActionBar.customView.findViewById(R.id.btnProfile)
+
+        btnProfile.setOnClickListener {
+
+        }
     }
 
 
