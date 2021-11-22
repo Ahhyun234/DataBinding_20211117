@@ -1,6 +1,7 @@
 package com.nepplus.databinding_20211117.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.nepplus.databinding_20211117.R
+import com.nepplus.databinding_20211117.ViewReplyDetailActivity
 import com.nepplus.databinding_20211117.ViewTopicDetailActivity
 import com.nepplus.databinding_20211117.datas.ReplyData
 import com.nepplus.databinding_20211117.datas.TopicData
@@ -108,6 +110,11 @@ class ReplyAdapter(val mContext: Context, val resId: Int, val mList: List<ReplyD
 
             })
 
+        }
+
+        txtReplyCount.setOnClickListener {
+            val myIntent = Intent(mContext,ViewReplyDetailActivity::class.java)
+            mContext.startActivity(myIntent)
         }
 
         return row

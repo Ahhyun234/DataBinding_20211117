@@ -27,7 +27,7 @@ class MyProfileActivity : BaseActivity() {
             val alert = AlertDialog.Builder(mContext)
             alert.setTitle("로그아웃 확인")
             alert.setMessage("정말 로그아웃 하시겠습니까")
-            alert.setPositiveButton.("확인", DialogInterface.OnClickListener({dialogInterface, i ->
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
                 //로그아웃 처리는 ? => 저장된 Token을 "" 으로 돌려주자 (내폰에 저장된 토큰 삭제)
 
                 ContextUtil.setToken(mContext,"")

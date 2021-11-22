@@ -17,7 +17,7 @@ class EditReplyActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       binding= DataBindingUtil.setContentView(mContext.R.layout.activity_edit_reply)
+       binding= DataBindingUtil.setContentView(mContext,R.layout.activity_edit_reply)
         setupEvent()
         setValues()
     }
