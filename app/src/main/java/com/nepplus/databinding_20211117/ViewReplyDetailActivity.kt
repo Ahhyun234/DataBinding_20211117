@@ -33,6 +33,16 @@ class ViewReplyDetailActivity : BaseActivity() {
             ServerUtil.postRequestReReply(mContext,mReplydata.id,inputContent,object :ServerUtil.JsonResponseHandler{
                 override fun onResponse(jsonObject: JSONObject) {
 
+//                    1. 새로고침
+                    getReplyDetailfromServer()
+
+
+                    runOnUiThread {
+                        //  2. 입력칸 비워두기
+                        binding.edtContent.setText("")
+
+                    }
+
                 }
 
             })
@@ -73,6 +83,9 @@ class ViewReplyDetailActivity : BaseActivity() {
                 }
                 runOnUiThread {
                     mReReplyAdapter.notifyDataSetChanged()
+
+                    // 3. 리스트 뷰 스크롤을 맨 아래로 내려보기(댓글 갯수 -1 번째 칸으로 스크롤)
+                    binding.reReplyListView.smoothScollToPosition(mReReplyList.size-1)
                 }
             }
 
