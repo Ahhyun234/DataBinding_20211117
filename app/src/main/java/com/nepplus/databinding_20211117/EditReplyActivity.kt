@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.nepplus.databinding_20211117.databinding.ActivityEditReplyBinding
+import com.nepplus.databinding_20211117.datas.TopicData
 
 class EditReplyActivity : BaseActivity() {
 
@@ -23,5 +24,10 @@ class EditReplyActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        mTopicData = Intent.getSerializableExtra("topic") as TopicData
+
+        binding.txtTopicTitle.text = mTopicData.title
+        binding.txtMySideTitle.text = mTopicData!!.titlex
     }
 }
